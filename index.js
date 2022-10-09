@@ -7,6 +7,7 @@ let count = gridBoxes.length;
 
 let items = ["cat","random","random","random","random"];
 let correctPlaces = [];
+let selectedPlaces = [];
 
 function randomImageGenerate(){
     gridBoxes.forEach((elem,index)=>{
@@ -24,6 +25,11 @@ console.log(correctPlaces);
 
 
 // selecting an image
+gridBoxes.forEach((elem,index)=>{
+    elem.addEventListener("click",(e)=>{
+        elem.classList.toggle("selected");             
+    })
+})
 
 
 
@@ -34,8 +40,43 @@ let submitBtn = document.getElementById("submitBtn");
 
 refreshBtn.addEventListener("click",(e)=>{
     refreshBtn.innerHTML = "<div class='loader'></div>";
+
+    gridBoxes.forEach(elem=>{
+        elem.classList.remove("selected");        
+    })
+
     setTimeout(() => {
         randomImageGenerate();
         refreshBtn.innerHTML=`<i class="fa-sharp fa-solid fa-arrow-rotate-right"></i>`;
-    }, 5000);
+    }, 1000);
+
+})
+
+
+
+submitBtn.addEventListener("click",(e)=>{
+    selectedPlaces = [];
+    let selected = document.querySelectorAll(".selected");
+    if(selected.length == 0){
+        alert("Please select atleast one");
+    }else{
+        selected.forEach((elem)=>{
+            let i = elem.getAttribute("data-sno");
+            selectedPlaces.push(parseInt(i));
+        })
+
+        gridBoxes.forEach(elem=>{
+            elem.classList.remove("selected");        
+        })
+        randomImageGenerate();
+
+        
+        console.log(selectedPlaces);
+    }
+
+
+
+
+
+    
 })
