@@ -88,10 +88,6 @@ submitBtn.addEventListener("click",(e)=>{
 
     }
 
-
-
-
-
     
 })
 
