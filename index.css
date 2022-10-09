@@ -64,14 +64,48 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-#imageGallery > .gridImage{
+.gridImage{
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.gridImage:hover{
-    
+.gridImage i{
+    color: #84bafc;
 }
+
+.selected{
+    position: relative;
+}
+
+.selected::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 50%;
+    filter        : blur(2px);
+    -moz-filter   : blur(2px);
+    -webkit-filter: blur(2px);
+    -o-filter     : blur(2px);
+}
+
+.selected::after{
+    color: var(--heading-color);
+    font-family: "FontAwesome";
+    content: "\f058";
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+    height: 100%;
+}
+
+/* .gridImage:hover{
+
+} */
 
 
 

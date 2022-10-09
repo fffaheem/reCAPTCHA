@@ -6,17 +6,24 @@ let count = gridBoxes.length;
 
 
 let items = ["cat","random","random","random","random"];
-
+let correctPlaces = [];
 
 function randomImageGenerate(){
     gridBoxes.forEach((elem,index)=>{
         let i = Math.floor(Math.random() * items.length);
+        if(i==0){
+            correctPlaces.push(index);
+        }
         elem.style.backgroundImage=`url(https://source.unsplash.com/random/50×50/?${items[i]}&sig=${index})`;
     })
 }
 
 randomImageGenerate();
 
+console.log(correctPlaces);
+
+
+// selecting an image
 
 
 
