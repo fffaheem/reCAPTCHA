@@ -10,6 +10,7 @@ let correctPlaces = [];
 let selectedPlaces = [];
 
 function randomImageGenerate(){
+    correctPlaces = [];
     gridBoxes.forEach((elem,index)=>{
         let i = Math.floor(Math.random() * items.length);
         if(i==0){
@@ -21,8 +22,6 @@ function randomImageGenerate(){
 
 randomImageGenerate();
 
-console.log(correctPlaces);
-
 
 // selecting an image
 gridBoxes.forEach((elem,index)=>{
@@ -30,8 +29,6 @@ gridBoxes.forEach((elem,index)=>{
         elem.classList.toggle("selected");             
     })
 })
-
-
 
 
 
@@ -65,13 +62,30 @@ submitBtn.addEventListener("click",(e)=>{
             selectedPlaces.push(parseInt(i));
         })
 
-        gridBoxes.forEach(elem=>{
-            elem.classList.remove("selected");        
-        })
-        randomImageGenerate();
+        // console.log("correct",correctPlaces);
+        // console.log(selectedPlaces);
 
-        
-        console.log(selectedPlaces);
+        if(correct()=="true"){            
+            gridBoxes.forEach(elem=>{
+                elem.classList.remove("selected");        
+            })
+            randomImageGenerate();
+
+            alert("Done");
+
+            // or any of your code
+
+
+        }else{
+            gridBoxes.forEach(elem=>{
+                elem.classList.remove("selected");        
+            })
+            randomImageGenerate();
+
+            alert("wrong");
+
+        }
+
     }
 
 
@@ -80,3 +94,16 @@ submitBtn.addEventListener("click",(e)=>{
 
     
 })
+
+
+function correct(){
+  if(correctPlaces.length!=selectedPlaces.length){
+    return "false";
+  }else{
+    if(JSON.stringify(correctPlaces) == JSON.stringify(selectedPlaces)){
+        return "true";
+    }else{
+        return "false";
+    }
+  }
+}
